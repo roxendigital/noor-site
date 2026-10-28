@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noor: prayer times, alerts, Qibla and dua</title>
+<meta name="description" content="Noor gives you accurate prayer times, on-time prayer alerts, Qibla, a Hijri calendar and 138 dua in Arabic and English. It works offline. No ads, no account, no tracking.">
+<meta name="theme-color" content="#1E2A55">
+<meta property="og:title" content="Noor: prayer times, alerts, Qibla and dua">
+<meta property="og:description" content="Accurate prayer times and on-time alerts. Works offline. No ads, no account, no tracking.">
+<meta property="og:image" content="img/prayers.png">
+<link rel="icon" href="favicon-mark.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Plus Jakarta Sans";font-weight:600;font-display:swap;src:url(fonts/PlusJakartaSans-600.ttf) format("truetype")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:700;font-display:swap;src:url(fonts/PlusJakartaSans-700.ttf) format("truetype")}
+@font-face{font-family:"Plus Jakarta Sans";font-weight:800;font-display:swap;src:url(fonts/PlusJakartaSans-800.ttf) format("truetype")}
+:root{--bg:#F4F5F7;--surface:#FFFFFF;--ink:#14161A;--muted:#5B6270;--fill:#EEF1F6;--border:#D5D9E0;--accent:#3949AB;--tint:#E8EBF8;--night:#1E2A55;--gold:#E9C46A;--radius:28px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-weight:600;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-weight:800;line-height:1.1;margin:0;letter-spacing:-.02em}
+p{margin:0}
+.overline{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:19px;color:var(--muted);max-width:560px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+
+/* hero */
+.hero{background:var(--night);color:#fff;position:relative}
+.hero::before{content:"";position:absolute;top:0;bottom:0;right:0;width:min(58%,700px);background:url(img/mosque-hero.jpg) center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 28%,#000 62%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.55) 28%,#000 62%)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,42,85,.6) 0%,rgba(30,42,85,0) 24%,rgba(30,42,85,0) 72%,var(--night) 100%)}
+.hero .wrap{position:relative;z-index:1}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;text-decoration:none}
+.brand img{width:34px;height:34px;background:#F4EFE3;border-radius:10px;padding:3px}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;font-weight:700}
+.nav a{text-decoration:none;color:rgba(255,255,255,.82)}
+.nav a:hover{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:36px 0 0}
+.hero h1{font-size:clamp(40px,6vw,68px);margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lead{color:rgba(255,255,255,.82);margin-top:22px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;background:var(--gold);color:var(--night);font-weight:800;font-size:16px;text-decoration:none;font-family:inherit;border:0}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.btn:hover{filter:brightness(1.05)}
+.note{font-size:14px;color:rgba(255,255,255,.7);margin-top:16px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:30px;font-size:14px;font-weight:700;color:rgba(255,255,255,.88)}
+.trust span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:99px;background:var(--gold);margin-right:8px}
+.hero-phone{justify-self:center;margin-bottom:-110px}
+.hero-phone .phone{width:min(380px,100%)}
+
+/* phone frame */
+.phone{width:min(300px,100%);border-radius:38px;border:2px solid #14161A;background:#14161A;box-shadow:0 30px 60px -20px rgba(20,22,26,.45);overflow:hidden}
+.phone img{width:100%;height:auto;border-radius:36px}
+
+section{padding:96px 0}
+.hero+section{padding-top:150px}
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(30px,4.4vw,46px);margin-top:12px}
+.head p{margin-top:16px}
+
+/* feature rows */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-top:88px}
+.row:first-of-type{margin-top:0}
+.row.flip .phone{order:2}
+.row .phone{justify-self:center}
+.row h3{font-size:clamp(26px,3.4vw,36px);margin-top:10px}
+.row p.body{color:var(--muted);margin-top:14px;font-size:17px}
+.ticks{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+.ticks li{display:flex;gap:12px;font-size:16px}
+.ticks li::before{content:"";flex:none;width:22px;height:22px;border-radius:99px;background:var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233949AB' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") center/14px no-repeat;margin-top:2px}
+
+/* dua band */
+.band{background:var(--night);color:#fff;border-radius:36px;padding:56px 48px;display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.band .overline{color:var(--gold)}
+.band h2{font-size:clamp(30px,4vw,44px);margin-top:12px}
+.band p{color:rgba(255,255,255,.82);margin-top:16px;font-size:17px}
+.band .ticks li::before{background-color:rgba(233,196,106,.2);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E9C46A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E")}
+.stats{display:flex;gap:28px;margin-top:28px;flex-wrap:wrap}
+.stats b{display:block;font-size:34px;font-weight:800;color:var(--gold);line-height:1}
+.stats span{font-size:13px;color:rgba(255,255,255,.75);font-weight:700}
+.shots{display:flex;gap:14px;justify-content:center;align-items:flex-start}
+.shots .phone{width:49%;border-radius:30px}
+.shots .phone img{border-radius:28px}
+.shots .phone:nth-child(2){margin-top:60px}
+.themes{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.themes span{background:rgba(255,255,255,.12);border-radius:99px;padding:6px 14px;font-size:14px;font-weight:700}
+
+/* cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:28px}
+.card h3{font-size:20px;margin-top:16px}
+.card p{color:var(--muted);margin-top:8px;font-size:16px}
+.ic{width:48px;height:48px;border-radius:99px;background:var(--tint);display:grid;place-items:center}
+.ic svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* pricing */
+.price{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px}
+.plan{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px}
+.plan.pro{background:var(--night);color:#fff;border-color:var(--night)}
+.plan h3{font-size:24px}
+.plan .amt{font-size:44px;font-weight:800;margin-top:10px;line-height:1}
+.plan .amt small{font-size:15px;font-weight:700;opacity:.75;margin-left:6px}
+.plan .ticks{margin-top:22px}
+.plan.pro .ticks li::before{background-color:rgba(233,196,106,.2);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E9C46A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E")}
+.fine{color:var(--muted);font-size:15px;margin-top:22px;max-width:860px}
+
+/* faq */
+details{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:0 24px;max-width:760px}
+details+details{margin-top:12px}
+summary{cursor:pointer;font-weight:800;font-size:17px;padding:20px 0;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:26px;font-weight:600;color:var(--accent);line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--muted);padding:0 0 22px;font-size:16px}
+
+/* contact + footer */
+.contact{background:var(--tint);border-radius:36px;padding:56px;text-align:center}
+.contact h2{font-size:clamp(28px,4vw,40px)}
+.contact p{color:var(--muted);margin:14px auto 0;max-width:520px;font-size:17px}
+.contact .btn{background:var(--night);color:#fff;margin-top:26px}
+footer{padding:48px 0 56px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+footer nav{display:flex;gap:22px;flex-wrap:wrap}
+footer a{text-decoration:none;font-weight:700}
+footer a:hover{color:var(--ink)}
+
+@media (max-width:860px){
+  .nav ul{display:none}
+  .hero-grid,.row,.band,.price{grid-template-columns:1fr}
+  .hero-grid{gap:44px;padding-top:12px}
+  .hero::before{width:100%;opacity:.5}
+  .hero-phone{margin-bottom:-70px}
+  .row{gap:36px;margin-top:64px}
+  .row.flip .phone{order:0}
+  .band{padding:36px 24px;border-radius:28px;gap:36px}
+  .grid3{grid-template-columns:1fr}
+  section{padding:72px 0}
+  .hero+section{padding-top:120px}
+  .contact{padding:40px 24px;border-radius:28px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top" id="top"><img src="favicon-mark.svg" alt="">Noor</a>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#dua">Dua</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">Help</a></li>
+      </ul>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <p class="overline" style="color:var(--gold)">Prayer times · Alerts · Qibla · Dua</p>
+        <h1>Prayer times you can <em>trust</em>.</h1>
+        <p class="lead">Accurate times, a notification that arrives when it should, and 138 dua in Arabic and English. It works offline. No ads, no account, no tracking.</p>
+        <div class="cta">
+          <a class="btn" href="#features">See what is inside</a>
+          <a class="btn ghost" href="#privacy">How we protect your privacy</a>
+        </div>
+        <p class="note">Coming soon to Android and iPhone.</p>
+        <div class="trust"><span>Works offline</span><span>No ads</span><span>No account</span><span>Free to use</span></div>
+      </div>
+      <div class="hero-phone">
+        <div class="phone"><img src="img/prayers.png" width="1120" height="2442" alt="The Prayers screen of Noor. A night-blue card shows Maghrib is next at 6:01 PM with a countdown, above a tasbih counter and a Dua shortcut."></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="head">
+      <p class="overline">Everything for the day</p>
+      <h2>Four simple tabs. Nothing you have to learn.</h2>
+      <p class="lead">Prayers, Dua, Qibla and Calendar. Each one does one job and does it well, in plain language.</p>
+    </div>
+
+    <div class="row">
+      <div class="phone"><img src="img/prayers-timeline.png" width="780" height="1688" alt="The day as a timeline: Fajr, sunrise, Dhuhr and Asr are done, Now is marked, and Maghrib is highlighted as next."></div>
+      <div>
+        <p class="overline">Prayers</p>
+        <h3>See your whole day at a glance</h3>
+        <p class="body">Your next prayer and a live countdown sit at the top. Below, the day runs as a simple timeline, so you always know what is done and what is next.</p>
+        <ul class="ticks">
+          <li>Calculated on your phone, so it works with no signal</li>
+          <li>Choose your method and Asr rule. Add minutes to match your mosque</li>
+          <li>Swipe the card to see other cities, each with its own time zone</li>
+          <li>A notification or vibration for each of the five prayers, with a test button</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div class="phone"><img src="img/qibla.png" width="780" height="1688" alt="The Qibla compass with an arrow pointing to the Kaaba at 55 degrees."></div>
+      <div>
+        <p class="overline">Qibla</p>
+        <h3>Find the direction. Know it is right.</h3>
+        <p class="body">A clear compass points to Makkah and tells you when it needs calibrating. Hold your phone flat and turn until the arrow is steady.</p>
+        <ul class="ticks">
+          <li>Direction worked out on your phone</li>
+          <li>Warns you when metal or magnets disturb the compass</li>
+          <li>A map view if you would rather use that</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="phone"><img src="img/calendar.png" width="780" height="1688" alt="The Hijri and Gregorian calendar with important dates marked in gold."></div>
+      <div>
+        <p class="overline">Calendar</p>
+        <h3>Hijri and Gregorian, side by side</h3>
+        <p class="body">A full month view with both dates on every day. Important dates glow gold, and a short list shows what is coming up.</p>
+        <ul class="ticks">
+          <li>Nudge the Hijri date by one day to match your local moon sighting</li>
+          <li>Isra and Mi'raj, Ramadan, Eid and more</li>
+          <li>Light and dark mode, large text and screen reader support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dua" style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <p class="overline">Dua</p>
+        <h2>A dua for the moment you are in</h2>
+        <p>Read each dua in Arabic with the English translation and an easy transliteration. Every dua comes from the Quran or an authentic hadith, and says which one.</p>
+        <div class="stats">
+          <div><b>138</b><span>dua</span></div>
+          <div><b>9</b><span>themes</span></div>
+          <div><b>0</b><span>signal needed</span></div>
+        </div>
+        <div class="themes" aria-label="Themes"><span>General</span><span>Forgiveness</span><span>Guidance</span><span>Family</span><span>Health and provision</span><span>Travel</span><span>Protection</span><span>Prayer</span><span>Daily life</span></div>
+        <ul class="ticks">
+          <li>Pin one dua to the top of your Dua tab</li>
+          <li>Search for how you feel, like worried, in debt or someone is ill</li>
+          <li>Share a dua as text with family and friends (Pro)</li>
+        </ul>
+      </div>
+      <div class="shots">
+        <div class="phone"><img src="img/dua-home.png" width="1040" height="3660" alt="The Dua tab with a pinned dua in Arabic, a search box and common searches."></div>
+        <div class="phone"><img src="img/dua-reading.png" width="1040" height="1688" alt="A dua on the reading screen with Arabic, translation and transliteration."></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="privacy" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="overline">Privacy</p>
+      <h2>Your prayers are your business.</h2>
+      <p class="lead">Noor is built so that it does not need to know anything about you.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div><h3>Calculated on your phone</h3><p>Prayer times, Qibla and the Hijri date are worked out on your device from your location, the date and your chosen method. They work offline.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div><h3>No ads. No account. No analytics.</h3><p>No sign-up and no tracking. Noor asks for your location only while you use the app, and never in the background. Your coordinates never leave your phone.</p></div>
+      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>One network request</h3><p>When you type a city name, only that text is sent to a map service (OpenStreetMap Nominatim) to find its coordinates. Nothing else is sent.</p></div>
+    </div>
+    <p class="fine" style="margin-top:28px">Your history, tasbih counts and settings stay on your phone. You can export a copy any time from Settings.</p>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="overline">Pricing</p>
+      <h2>Free to use. Pro is a one-time thank you.</h2>
+      <p class="lead">No subscription, no ads. Pay once and keep it.</p>
+    </div>
+    <div class="price">
+      <div class="plan">
+        <h3>Free</h3>
+        <p class="amt">$0</p>
+        <ul class="ticks">
+          <li>Prayer times for any city, calculated offline</li>
+          <li>Notification or vibrate alerts for all five prayers</li>
+          <li>Qibla compass and Hijri calendar</li>
+          <li>Tasbih counter and a home screen widget</li>
+          <li>The General dua theme</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <h3>Pro</h3>
+        <p class="amt">$3.99<small>one time</small></p>
+        <ul class="ticks">
+          <li>All 9 dua themes, 138 dua in total</li>
+          <li>Share any dua as text with family and friends</li>
+          <li>Ramadan mode with suhoor and iftar countdowns and a fasting tracker</li>
+          <li>Helps one person keep building Noor, ad-free</li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">Prices are set by the app stores and may differ by country. You only see Pro in Settings, and Noor never nags.</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="overline">Help</p>
+      <h2>Quick answers</h2>
+    </div>
+    <details><summary>The times differ from my mosque. What do I do?</summary><p>Open Settings and check the calculation method and the Asr rule. You can also add or take away minutes for each prayer, so Noor matches your mosque's timetable.</p></details>
+    <details><summary>Does Noor work without internet?</summary><p>Yes. Prayer times, Qibla, the calendar and every dua work offline. Only searching for a new city needs a connection.</p></details>
+    <details><summary>Why does Noor need my location?</summary><p>To work out prayer times and the Qibla for where you are. It uses your location only while the app is open and it never leaves your phone. You can also pick a city by hand.</p></details>
+    <details><summary>Will my prayer alert arrive on time?</summary><p>Noor schedules alerts on your phone and re-arms them after a restart, an update or a change of time zone. A health screen shows your permission, exact-alarm and battery status, and a test button sends you an alert right now.</p></details>
+    <details><summary>Where do the dua come from?</summary><p>From the Quran and from authentic hadith. Each dua shows its source, such as the surah and verse or the hadith collection.</p></details>
+    <details><summary>Do I have to pay to use Noor?</summary><p>No. Prayer times, alerts, Qibla and the calendar are free, and so is the General dua theme. Pro is a single payment that adds more dua themes and Ramadan mode.</p></details>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Questions or ideas?</h2>
+      <p>Noor is made by one person who reads every message. Tell us what would make it better for you.</p>
+      <a class="btn" href="mailto:roxendigital@gmail.com?subject=Noor%20support">Email support</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Noor. Made with care.</p>
+    <nav aria-label="Footer"><a href="#features">Features</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a><a href="mailto:roxendigital@gmail.com?subject=Noor%20support">Support</a></nav>
+  </div>
+</footer>
+
+</body>
+</html>

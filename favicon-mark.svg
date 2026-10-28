@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <title>Noor mark (onion dome + crescent finial, transparent)</title>
+  <path d="M340 700 C300 620 300 520 392 460 C440 430 410 380 460 340 C480 320 496 295 512 270 C528 295 544 320 564 340 C614 380 584 430 632 460 C724 520 724 620 684 700" fill="none" stroke="#1E2A55" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="420" y="700" width="184" height="72" rx="6" fill="none" stroke="#1E2A55" stroke-width="16"/>
+  <line x1="512" y1="270" x2="512" y2="195" stroke="#1E2A55" stroke-width="18" stroke-linecap="round"/>
+  <defs>
+    <mask id="mark-crescent">
+      <rect width="1024" height="1024" fill="#FFFFFF"/>
+      <circle cx="534" cy="148" r="30" fill="#000000"/>
+    </mask>
+  </defs>
+  <circle cx="512" cy="150" r="34" fill="#E9C46A" mask="url(#mark-crescent)"/>
+</svg>
